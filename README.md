@@ -6,3 +6,5 @@ the bot on the other hand:
 - minimax algorithm
 - (hopefully) AI evaluation of board states
 - im already overscoping
+
+project is using the minimum viable product workflow (aka get it to work somehow and then make it work properly)
