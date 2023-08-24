@@ -181,7 +181,7 @@ def player_input():
         if event.type == pg.MOUSEBUTTONDOWN:
             #print("down")
             if click_loked == False:
-                out_of_bounds = False
+                piece_out_of_bounds = False
                 if picked_piece_x_raw <= 100:
                     picked_piece_x = 0
                 elif picked_piece_x_raw <= 200:
@@ -201,7 +201,7 @@ def player_input():
                 elif picked_piece_x_raw <= 800:
                     picked_piece_x = 8
                 else:
-                    out_of_bounds = True
+                    piece_out_of_bounds = True
                 if picked_piece_y_raw <= 100:
                     picked_piece_y = 0
                 elif picked_piece_y_raw <= 200:
@@ -221,8 +221,8 @@ def player_input():
                 elif picked_piece_y_raw <= 800:
                     picked_piece_y = 8
                 else:
-                    out_of_bounds = True
-                if out_of_bounds == False:
+                    piece_out_of_bounds = True
+                if piece_out_of_bounds == False:
                     picked_piece = board[picked_piece_x][picked_piece_y]
                     print (picked_piece)
                     click_loked = True
@@ -235,7 +235,7 @@ def player_input():
         if event.type == pg.MOUSEBUTTONUP:
                 #print("up")
                 click_loked = False
-                out_of_bounds = False
+                place_out_of_bounds = False
                 picked_place_x_raw = pos[0]
                 picked_place_y_raw = pos[1]
                 if picked_place_x_raw <= 100:
@@ -258,27 +258,28 @@ def player_input():
                     picked_place_x = 8
                 else:
                     place_out_of_bounds = True
-                if picked_piece_y_raw <= 100:
+
+                if picked_place_y_raw <= 100:
                     picked_place_y = 0
-                elif picked_piece_y_raw <= 200:
+                elif picked_place_y_raw <= 200:
                     picked_place_y = 1
-                elif picked_piece_y_raw <= 300:
+                elif picked_place_y_raw <= 300:
                     picked_place_y = 2
-                elif picked_piece_y_raw <= 400:
+                elif picked_place_y_raw <= 400:
                     picked_place_y = 3
-                elif picked_piece_y_raw <= 500:
+                elif picked_place_y_raw <= 500:
                     picked_place_y = 4
-                elif picked_piece_y_raw <= 600:
+                elif picked_place_y_raw <= 600:
                     picked_place_y = 5
-                elif picked_piece_y_raw <= 700:
+                elif picked_place_y_raw <= 700:
                     picked_place_y = 6
-                elif picked_piece_y_raw <= 800:
+                elif picked_place_y_raw <= 800:
                     picked_place_y = 7
-                elif picked_piece_y_raw <= 800:
+                elif picked_place_y_raw <= 800:
                     picked_place_y = 8
                 else:
                     place_out_of_bounds = True
-                if out_of_bounds:
+                if place_out_of_bounds:
                     pass
                 else:
                     picked_place = (picked_place_x,picked_place_y)
