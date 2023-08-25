@@ -182,7 +182,9 @@ def player_input():
             #print("down")
             if click_loked == False:
                 piece_out_of_bounds = False
-                if picked_piece_x_raw <= 100:
+                if picked_piece_x_raw < 0: #checking for upper out of bounds
+                    piece_out_of_bounds = True
+                elif picked_piece_x_raw <= 100:
                     picked_piece_x = 0
                 elif picked_piece_x_raw <= 200:
                     picked_piece_x = 1
@@ -201,6 +203,8 @@ def player_input():
                 elif picked_piece_x_raw <= 800:
                     picked_piece_x = 8
                 else:
+                    piece_out_of_bounds = True #checking for lower out of bounds
+                if picked_piece_y_raw < 0: #checking for left out of bounds
                     piece_out_of_bounds = True
                 if picked_piece_y_raw <= 100:
                     picked_piece_y = 0
@@ -221,7 +225,7 @@ def player_input():
                 elif picked_piece_y_raw <= 800:
                     picked_piece_y = 8
                 else:
-                    piece_out_of_bounds = True
+                    piece_out_of_bounds = True #checking for right out of bounds
                 if piece_out_of_bounds == False:
                     picked_piece = board[picked_piece_x][picked_piece_y]
                     print (picked_piece)
@@ -284,10 +288,14 @@ def player_input():
                 else:
                     picked_place = (picked_place_x,picked_place_y)
                     make_move(picked_piece,picked_place)
+                    picked_piece = 0
+                    print(picked_piece)
 
 def make_move(picked_piece,picked_place):
     print(board)
-    board[picked_place[0]][picked_place[1]] = picked_piece
+    if picked_piece != 0: #0 is no piece taken
+        #TODO: implement move rules
+        board[picked_place[0]][picked_place[1]] = picked_piece
     print(board)
 
 
