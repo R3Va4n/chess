@@ -170,6 +170,7 @@ def player_input():
     global picked_piece_x
     global picked_piece_y
     global main_loop
+    has_output = False
     pos = pg.mouse.get_pos()
     picked_piece_x_raw = pos[0]
     picked_piece_y_raw = pos[1]
@@ -226,14 +227,11 @@ def player_input():
                     picked_piece_y = 8
                 else:
                     piece_out_of_bounds = True #checking for right out of bounds
+            
                 if piece_out_of_bounds == False:
                     picked_piece = board[picked_piece_x][picked_piece_y]
                     print (picked_piece)
                     click_loked = True
-
-
-
-
 
         # player clicked on place, getting place
         if event.type == pg.MOUSEBUTTONUP:
@@ -283,13 +281,17 @@ def player_input():
                     picked_place_y = 8
                 else:
                     place_out_of_bounds = True
+
                 if place_out_of_bounds:
-                    pass
+                    picked_piece = 0
+                    picked_place = 0
+
                 else:
                     picked_place = (picked_place_x,picked_place_y)
-                    make_move(picked_piece,picked_place)
-                    picked_piece = 0
-                    print(picked_piece)
+                    has_output = True
+
+                print((has_output, picked_piece, picked_place))
+                return (has_output, picked_piece, picked_place)
 
 def make_move(picked_piece,picked_place):
     print(board)
@@ -327,7 +329,14 @@ def evaluate_on_piece_worth():
 
 reset_board()
 while main_loop:
-    player_input()
+
+    
+    has_out = False
+    while not has_out:
+        print("2")
+        has_out, piece, place = player_input()
+    make_move(piece, place) # take a player input
+
     func_visual()
     print 
  
