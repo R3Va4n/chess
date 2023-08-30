@@ -229,8 +229,7 @@ def player_input():
                     piece_out_of_bounds = True #checking for right out of bounds
             
                 if piece_out_of_bounds == False:
-                    picked_piece = board[picked_piece_x][picked_piece_y]
-                    print (picked_piece)
+                    picked_piece_pos = (picked_piece_x,picked_piece_y)
                     click_loked = True
 
         # player clicked on place, getting place
@@ -290,8 +289,8 @@ def player_input():
                     picked_place = (picked_place_x,picked_place_y)
                     has_output = True
 
-                print((has_output, picked_piece, picked_place))
-                return (has_output, picked_piece, picked_place)
+                print((has_output, picked_piece_pos, picked_place))
+                return (has_output, picked_piece_pos, picked_place)
 
 def make_move(picked_piece,picked_place):
     print(board)
