@@ -170,7 +170,6 @@ def player_input():
     global picked_piece_x
     global picked_piece_y
     global main_loop
-    has_output = False
     pos = pg.mouse.get_pos()
     picked_piece_x_raw = pos[0]
     picked_piece_y_raw = pos[1]
@@ -182,10 +181,8 @@ def player_input():
         if event.type == pg.MOUSEBUTTONDOWN:
             #print("down")
             if click_loked == False:
-                piece_out_of_bounds = False
-                if picked_piece_x_raw < 0: #checking for upper out of bounds
-                    piece_out_of_bounds = True
-                elif picked_piece_x_raw <= 100:
+                out_of_bounds = False
+                if picked_piece_x_raw <= 100:
                     picked_piece_x = 0
                 elif picked_piece_x_raw <= 200:
                     picked_piece_x = 1
@@ -204,9 +201,7 @@ def player_input():
                 elif picked_piece_x_raw <= 800:
                     picked_piece_x = 8
                 else:
-                    piece_out_of_bounds = True #checking for lower out of bounds
-                if picked_piece_y_raw < 0: #checking for left out of bounds
-                    piece_out_of_bounds = True
+                    out_of_bounds = True
                 if picked_piece_y_raw <= 100:
                     picked_piece_y = 0
                 elif picked_piece_y_raw <= 200:
@@ -226,17 +221,21 @@ def player_input():
                 elif picked_piece_y_raw <= 800:
                     picked_piece_y = 8
                 else:
-                    piece_out_of_bounds = True #checking for right out of bounds
-            
-                if piece_out_of_bounds == False:
-                    picked_piece_pos = (picked_piece_x,picked_piece_y)
+                    out_of_bounds = True
+                if out_of_bounds == False:
+                    picked_piece = board[picked_piece_x][picked_piece_y]
+                    print (picked_piece)
                     click_loked = True
+
+
+
+
 
         # player clicked on place, getting place
         if event.type == pg.MOUSEBUTTONUP:
                 #print("up")
                 click_loked = False
-                place_out_of_bounds = False
+                out_of_bounds = False
                 picked_place_x_raw = pos[0]
                 picked_place_y_raw = pos[1]
                 if picked_place_x_raw <= 100:
@@ -259,44 +258,35 @@ def player_input():
                     picked_place_x = 8
                 else:
                     place_out_of_bounds = True
-
-                if picked_place_y_raw <= 100:
+                if picked_piece_y_raw <= 100:
                     picked_place_y = 0
-                elif picked_place_y_raw <= 200:
+                elif picked_piece_y_raw <= 200:
                     picked_place_y = 1
-                elif picked_place_y_raw <= 300:
+                elif picked_piece_y_raw <= 300:
                     picked_place_y = 2
-                elif picked_place_y_raw <= 400:
+                elif picked_piece_y_raw <= 400:
                     picked_place_y = 3
-                elif picked_place_y_raw <= 500:
+                elif picked_piece_y_raw <= 500:
                     picked_place_y = 4
-                elif picked_place_y_raw <= 600:
+                elif picked_piece_y_raw <= 600:
                     picked_place_y = 5
-                elif picked_place_y_raw <= 700:
+                elif picked_piece_y_raw <= 700:
                     picked_place_y = 6
-                elif picked_place_y_raw <= 800:
+                elif picked_piece_y_raw <= 800:
                     picked_place_y = 7
-                elif picked_place_y_raw <= 800:
+                elif picked_piece_y_raw <= 800:
                     picked_place_y = 8
                 else:
                     place_out_of_bounds = True
-
-                if place_out_of_bounds:
-                    picked_piece = 0
-                    picked_place = 0
-
+                if out_of_bounds:
+                    pass
                 else:
                     picked_place = (picked_place_x,picked_place_y)
-                    has_output = True
-
-                print((has_output, picked_piece_pos, picked_place))
-                return (has_output, picked_piece_pos, picked_place)
+                    make_move(picked_piece,picked_place)
 
 def make_move(picked_piece,picked_place):
     print(board)
-    if picked_piece != 0: #0 is no piece taken
-        #TODO: implement move rules
-        board[picked_place[0]][picked_place[1]] = picked_piece
+    board[picked_place[0]][picked_place[1]] = picked_piece
     print(board)
 
 
@@ -328,14 +318,7 @@ def evaluate_on_piece_worth():
 
 reset_board()
 while main_loop:
-
-    
-    has_out = False
-    while not has_out:
-        print("2")
-        has_out, piece, place = player_input()
-    make_move(piece, place) # take a player input
-
+    player_input()
     func_visual()
     print 
  
