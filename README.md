@@ -11,3 +11,5 @@ the bot on the other hand:
 - im already overscoping
 
 project is using the minimum viable product workflow (aka get it to work somehow and then make it work properly)
+
+The Project is now also using OOP instead of FOP because its just the right thing to do, even if Python technically doesn't need that.
