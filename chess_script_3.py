@@ -26,17 +26,17 @@ import numpy as np
 import pygame as pg
 
 class Game_Manager():
+
     def __init__(self) -> None:
         """
         Game rules setup
         """
-        player_to_move = 'white'
-        main_loop = True
-        game_loop = True
-        two_player_game = True
-        whites_move = True
-        visual_mode = True
-
+        self.player_to_move = 'white'
+        self.main_loop = True
+        self.game_loop = True
+        self.two_player_game = True
+        self.whites_move = True
+        self.visual_mode = True
         
         """
         This Makes a Empty Board (8x8 array)
@@ -53,14 +53,14 @@ class Game_Manager():
             board = np.array(board)
             return board
         print(1)
-        EMTPTY_BOARD  = mk_empty_board() 
+        self.EMPTY_BOARD  = mk_empty_board() 
         print(3)
 
         """
         Visuals setup
         """
         
-        if visual_mode:
+        if self.visual_mode:
             pg.init()
             height = 1000
             width = 1000
@@ -93,8 +93,8 @@ class Game_Manager():
     """
     This Makes a Empty Board (8x8 array)
     """
-    def give_empty_board() -> np.ndarray:
-        return EMTPTY_BOARD
+    def give_empty_board(self) -> np.ndarray:
+        return self.EMPTY_BOARD
     
     def reset_board():
         
@@ -150,4 +150,4 @@ class Game_Manager():
 
 a = Game_Manager
 a.__init__(a)
-print(a.give_empty_board())
+print(a.give_empty_board(a))
