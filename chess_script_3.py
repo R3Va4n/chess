@@ -37,6 +37,24 @@ class Game_Manager():
         whites_move = True
         visual_mode = True
 
+        
+        """
+        This Makes a Empty Board (8x8 array)
+        and assigns it to the Constant EMPTY_BOARD
+        """
+        def mk_empty_board() -> np.ndarray:
+            print(2)
+            board = []
+            col = []
+            for i in range(8):
+                col.append(0)
+            for i in range(8):
+                board.append(col)
+            board = np.array(board)
+            return board
+        print(1)
+        EMTPTY_BOARD  = mk_empty_board() 
+        print(3)
 
         """
         Visuals setup
@@ -75,18 +93,10 @@ class Game_Manager():
     This Makes a Empty Board (8x8 array)
     """
     def give_empty_board() -> np.ndarray:
-        pass
+        return EMTPTY_BOARD
     
     def reset_board():
-        def mk_board():
-            global board
-            board = []
-            a = []
-            for i in range(8):
-                a.append(0)
-            for i in range(8):
-                board.append(a)
-            board = np.array(board)
+        
         def populate_board():
             global board
             
@@ -136,5 +146,7 @@ class Game_Manager():
         mk_board()
         populate_board()
         print("hi")
+
 a = Game_Manager
-a.reset_board()
+a.__init__(a)
+print(a.give_empty_board())
