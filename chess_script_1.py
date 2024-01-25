@@ -235,7 +235,7 @@ def player_input():
         if event.type == pg.MOUSEBUTTONUP:
                 #print("up")
                 click_loked = False
-                out_of_bounds = False
+                place_out_of_bounds = False
                 picked_place_x_raw = pos[0]
                 picked_place_y_raw = pos[1]
                 if picked_place_x_raw <= 100:
@@ -278,7 +278,7 @@ def player_input():
                     picked_place_y = 8
                 else:
                     place_out_of_bounds = True
-                if out_of_bounds:
+                if place_out_of_bounds:
                     pass
                 else:
                     picked_place = (picked_place_x,picked_place_y)

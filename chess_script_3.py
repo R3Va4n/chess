@@ -96,13 +96,16 @@ class Game_Manager():
     def give_empty_board(self) -> np.ndarray:
         return self.EMPTY_BOARD
     
-    def reset_board():
-        
-        def populate_board():
-            global board
-            
-            #PAWNS
 
+    """
+    This Makes a Full starting - postion board (as 8x8 array)
+    """
+
+    def reset_board(self):
+        
+        def populate_board(board):
+
+            #PAWNS
             for i in board:
             #black
                 i[1] = -1
@@ -144,9 +147,10 @@ class Game_Manager():
             board[4][0] = -6
             #white
             board[4][7] = 6
-        mk_board()
-        populate_board()
-        print("hi")
+        my_board = self.give_empty_board()
+        populate_board(my_board)
+        return my_board
+        
 
 a = Game_Manager
 a.__init__(a)
